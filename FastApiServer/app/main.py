@@ -41,7 +41,7 @@ async def upload_file(
         timenow = str(datetime.datetime.now().time())
         temp_file_path = f"tmp/{timenow}_{file.filename}"
         os.makedirs("tmp", exist_ok=True)
-        delete_old_files('app/tmp', 1)
+        delete_old_files('tmp', 10)
         with open(temp_file_path, "wb") as f:
             content = await file.read()
             f.write(content)
