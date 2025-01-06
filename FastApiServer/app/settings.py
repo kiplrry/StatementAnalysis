@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-pp = load_dotenv()
+load_dotenv()
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND ='celery.backends.s3.S3Backend'
 
