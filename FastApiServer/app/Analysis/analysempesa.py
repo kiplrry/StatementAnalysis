@@ -1,4 +1,4 @@
-from .converters.gptrec import MpesaCSVConverter, DecryptionError
+from .converters.mpesaconverter import MpesaCSVConverter
 import os
 
 def analysempesa(filepath, pages='all', password=None):
