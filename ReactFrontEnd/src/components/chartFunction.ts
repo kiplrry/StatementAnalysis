@@ -31,14 +31,14 @@ export function aggregateMonthly(data: Record<string, any>[]) {
     const _data = Object.values(data.reduce((acc, item) => {
       const monthYear = new Date(item["Completion Time"]).toISOString().slice(0, 7); // format: "YYYY-MM"
       if (!acc[monthYear]) acc[monthYear] = { "Completion Time": monthYear, Withdrawn: 0, 'Balance': 0,"Paid In": 0, count: 0 };
-      acc[monthYear].Withdrawn += item.Withdrawn || 0;
-      acc[monthYear]['Paid In'] += item['Paid In'] || 0;
-      acc[monthYear]['Balance'] += item['Balance'] || 0;
+      acc[monthYear].Withdrawn += Number(item.Withdrawn) || 0;
+      acc[monthYear]['Paid In'] += Number(item['Paid In']) || 0;
+      acc[monthYear]['Balance'] += Number(item['Balance']) || 0;
       acc[monthYear].count += 1;
       return acc;
     }, {}))
     .map(grp => ({...grp, Balance: parseFloat((grp['Balance']/grp['count']).toFixed(2))}))
-    console.log(_data)
+    // console.log(_data)
     return _data
   }
 
@@ -47,8 +47,8 @@ export function aggregateYearly(data: Record<string, any>[]) {
     const _data =  data.reduce((acc, item) => {
       const year = new Date(item["Completion Time"]).getFullYear();
       if (!acc[year]) acc[year] = {"Completion Time": String(year), Withdrawn: 0, 'Paid In': 0, count: 0 };
-      acc[year].Withdrawn += item.Withdrawn || 0;
-      acc[year]['Paid In'] += item['Paid In'] || 0;
+      acc[year].Withdrawn += Number(item.Withdrawn) || 0;
+      acc[year]['Paid In'] += Number(item['Paid In']) || 0;
       acc[year].count += 1;
       return acc;
     }, {});
@@ -59,8 +59,8 @@ export function aggregateDaily(data: Record<string, any>[]) {
     const _data =  data.reduce((acc, item) => {
       const date = new Date(item["Completion Time"]).toISOString().slice(0, 10);
       if (!acc[date]) acc[date] = {"Completion Time": String(date), Withdrawn: 0, 'Paid In': 0, count: 0 };
-      acc[date].Withdrawn += item.Withdrawn || 0;
-      acc[date]['Paid In'] += item['Paid In'] || 0;
+      acc[date].Withdrawn += Number(item.Withdrawn) || 0;
+      acc[date]['Paid In'] += Number(item['Paid In']) || 0;
       acc[date].count += 1;
       return acc;
     }, {});

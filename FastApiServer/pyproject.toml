@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "StatementAnalysis"
+version = "0.1.0"
+description = "Mpesa Analysis backend app"
+keywords = ["fastapi", "celery", "pdf", "boto3", "redis"]
+dependencies = [
+    "fastapi==0.115.6",
+    "pandas==2.2.3",
+    "pdfplumber==0.11.5",
+    "PyPDF2==3.0.1",
+    "python-dotenv==1.0.1",
+    "tabula-py[jpype]",
+    "celery==5.4.0",
+    "uvicorn==0.34.0",
+    "boto3==1.35.86",
+    "botocore==1.35.86",
+    "redis==4.5.4",
+    "python-multipart==0.0.20"
+]
+
+[tool.setuptools.packages.find]
+where = ["app"]

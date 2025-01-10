@@ -13,13 +13,13 @@ services:
       - 8000:8000
   
   frontend:
-    image: trial
+    image: frontend
     container_name: react_frontend
     build:
       context: ./ReactFrontEnd
       dockerfile: Dockerfile
     ports:
-      - 4000:3000
+      - 4000:80
   
   celery:
     image: celery

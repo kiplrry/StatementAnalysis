@@ -73,10 +73,10 @@ const renderHeader = () => {
       </div>
   )
 };
-  const getTotal = (key)=>{
+  const getTotal = (key: string)=>{
     let total = 0
     filteredData.map(d=>{
-      if(d[key]) total += d[key]
+      if(d[key]) total += parseFloat(d[key])
     })
     return total.toFixed(2)
   }
