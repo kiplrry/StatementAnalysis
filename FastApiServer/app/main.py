@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from fastapi import FastAPI, BackgroundTasks, HTTPException, UploadFile, Form
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,6 +12,7 @@ from app.tempcleaner import delete_old_files
 
 app = FastAPI()
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Replace "*" with specific origins for better security
@@ -19,9 +21,10 @@ app.add_middleware(
     allow_headers=["*"], 
     )
 
+
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to FastAPI with Celery"}
+    return {"message": "Welcome"}
 
 def result(task_result):
     if not task_result.ready():
@@ -36,6 +39,15 @@ def result(task_result):
 async def upload_file(
     file: UploadFile, 
     password: str = Form(...)):
+    """View for file upload
+
+    :param file: PDF file
+    :type file: UploadFile
+    :param password: Password, defaults to Form(...)
+    :type password: str, optional
+    :return: JSONRESPONSE
+    :rtype: str
+    """
     try:
         # Save the file temporarily
         timenow = str(datetime.datetime.now().time())

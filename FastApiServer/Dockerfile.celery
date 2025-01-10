@@ -1,0 +1,4 @@
+FROM  backend
+
+
+CMD [ "celery", "-A", "app", "worker", "--loglevel=INFO" ]

@@ -1,0 +1,38 @@
+services:
+  backend:
+    image: backend
+    container_name: fastapi_server
+    build:
+      context: ./FastApiServer
+      dockerfile: Dockerfile.server
+    env_file:
+      - ./FastApiServer/.env
+    volumes:
+      - shared-temp:/server/tmp
+    ports:
+      - 8000:8000
+  
+  frontend:
+    image: trial
+    container_name: react_frontend
+    build:
+      context: ./ReactFrontEnd
+      dockerfile: Dockerfile
+    ports:
+      - 4000:3000
+  
+  celery:
+    image: celery
+    container_name: celery_backend
+    build:
+      context: ./FastApiServer
+      dockerfile: Dockerfile.celery
+    env_file:
+      - ./FastApiServer/.env
+    volumes:
+      - shared-temp:/server/tmp
+    depends_on:
+      - backend
+
+volumes:
+  shared-temp:

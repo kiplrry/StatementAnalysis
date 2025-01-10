@@ -1,11 +1,12 @@
+""" 
+Settings
+"""
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND ='celery.backends.s3.S3Backend'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 CELERY_S3_BUCKET = os.getenv('CELERY_S3_BUCKET')
 CELERY_S3_BASE_PATH = os.getenv('CELERY_S3_BASE_PATH')
@@ -14,4 +15,3 @@ CELERY_S3_REGION = os.getenv('CELERY_S3_REGION')
 CELERY_S3_ACCESS_KEY_ID = os.getenv('CELERY_S3_ACCESS_KEY_ID')
 CELERY_S3_SECRET_ACCESS_KEY = os.getenv('CELERY_S3_SECRET_ACCESS_KEY')
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-print(CELERY_S3_BASE_PATH)
