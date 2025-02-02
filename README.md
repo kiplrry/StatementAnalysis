@@ -90,6 +90,7 @@ The Celery worker is used to handle background tasks.
 ---
 
 ## Notes
+-- **The app takes approx 0.5s per pdf page to extract data**
 
 - **Testing and Validation**: The application is still undergoing development, and testing/validation features are being actively worked on.
 - **TypeScript (TSX)**: TypeScript integration is a work in progress for the frontend.
