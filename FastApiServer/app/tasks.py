@@ -25,25 +25,25 @@ def process_data(self: Task , fp, password):
         result['data'] = data
     except DecryptionError as de:
         print(de)
-        # self.update_state(
-        #     state = states.FAILURE,
-        #     meta = {
-        #         'exc_type': type(de).__name__,
-        #         'exc_message': 'Wrong password given',
-        #     }
-        # )
-        raise ex
+        self.update_state(
+            state = states.FAILURE,
+            meta = {
+                'exc_type': type(de).__name__,
+                'exc_message': 'Wrong password given',
+            }
+        )
+        raise de
     except Exception as ex:
         print(ex)
         result['error'] = 'An unexpected error occurred'
 
-        # self.update_state(
-        #     state = states.FAILURE,
-        #     meta = {
-        #         'exc_type': type(ex).__name__,
-        #         'exc_message': str(ex),
-        #     }
-        # )
+        self.update_state(
+            state = states.FAILURE,
+            meta = {
+                'exc_type': type(ex).__name__,
+                'exc_message': str(ex),
+            }
+        )
         raise ex
 
     return result

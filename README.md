@@ -14,6 +14,7 @@ This project is an implementation of a **Statement Analysis** tool. Currently, i
   - **Java**: Version 8 or later (required for Tabula)
   - **Python**: Version 3.10 or later
 - **Message Broker and Result Backend**:
+  - Not a must, but you'll have to tweak the flask api code do analysis without a broker
   - Example: Redis, AMQP (required for Celery)
 
 ---
@@ -40,6 +41,8 @@ Clone the project
 ---
 
 ### Celery Worker
+
+This is not a must, you can tweak the fastapi code to run the task asynchronously. only necessarry for many statements.
 
 The Celery worker is used to handle background tasks. 
 

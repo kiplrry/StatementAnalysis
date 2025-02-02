@@ -20,6 +20,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4000:80
+    
   
   celery:
     image: celery
@@ -33,6 +34,8 @@ services:
       - shared-temp:/server/tmp
     depends_on:
       - backend
+    
+    pull_policy: never
 
 volumes:
   shared-temp:
